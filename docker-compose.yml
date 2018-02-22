@@ -1,16 +1,17 @@
-version: "2"
+version: "3"
 services:
-  jenkins_data:
-    image: jenkins/jenkins:lts
-    entrypoint: /bin/true
   jenkins:
     image: jenkins/jenkins:lts
     ports:
       - "8080:8080"
-    volumes_from:
-      - jenkins_data
+    volumes:
+      - jenkins_data:/var/jenkins_home
   nexus:
     image: sonatype/nexus:oss
     ports:
       - "8081:8081"
-
+    volumes:
+      - nexus_data:/sonatype-work
+volumes:
+  jenkins_data:
+  nexus_data:
