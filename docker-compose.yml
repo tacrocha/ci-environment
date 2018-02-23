@@ -12,6 +12,20 @@ services:
       - "8081:8081"
     volumes:
       - nexus_data:/sonatype-work
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    ports:
+      - "8443:443"
+      - "8082:80"
+      - "8822:22"
+    volumes:
+      - gitlab_config:/etc/gitlab
+      - gitlab_logs:/var/log/gitlab
+      - gitlab_data:/var/opt/gitlab
+    restart: always
 volumes:
   jenkins_data:
   nexus_data:
+  gitlab_config:
+  gitlab_logs:
+  gitlab_data:
